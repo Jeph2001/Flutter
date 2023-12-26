@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class AllTexts extends StatelessWidget {
@@ -7,7 +5,7 @@ class AllTexts extends StatelessWidget {
   final _body;
   final _author;
 
-  AllTexts(this._title, this._author, this._body);
+  const AllTexts(this._title, this._author, this._body, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ImageFiles extends StatelessWidget {
   final String _assetPath;
 
-  ImageFiles(this._assetPath);
+  const ImageFiles(this._assetPath, {super.key});
 
   @override
   Widget build(BuildContext context) {
