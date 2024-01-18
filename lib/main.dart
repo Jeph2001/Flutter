@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:secondproject/first.dart';
 import 'locations_list.dart';
 import 'package:secondproject/RestoBar/landing.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 const locationsRoute = '/';
 const locationDetailRoute = '/location';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

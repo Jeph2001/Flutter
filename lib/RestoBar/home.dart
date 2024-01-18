@@ -1,98 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:secondproject/RestoBar/landing.dart';
 import 'package:secondproject/RestoBar/pub.dart';
+import 'package:secondproject/RestoBar/createAccount.dart';
+import 'package:secondproject/RestoBar/booking.dart';
+import 'package:secondproject/RestoBar/mainHome.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // HomePage({super.key});
+  int selectedbutton = 2;
+
+  void _selectedbbuton(int index) {
+    setState(() {
+      selectedbutton = index;
+    });
+  }
+
+  final List<Widget> _pages = [
+    const LandingPage(),
+    const CreateAccount(),
+    const MainHome(),
+    const PubPage(),
+    const BookingPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(16, 67, 66, 66),
-        appBar: AppBar(
-          title: const Text('Jo Pub&Resto'),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return const Scaffold(body: LandingPage());
-                  }));
-                },
-                icon: const Icon(Icons.perm_identity))
-          ],
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Image(
-                  height: 200,
-                  image: NetworkImage(
-                      'https://images.pexels.com/photos/941864/pexels-photo-941864.jpeg?auto=compress&cs=tinysrgb&w=600')),
-              const SizedBox(
-                height: 10,
-              ),
-              TextButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateColor.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.blue;
-                    }
-                    return Color.fromARGB(141, 25, 15, 3);
-                  })),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return const Scaffold(
-                        body: PubPage(),
-                      );
-                    }));
-                  },
-                  child: const Text(
-                    'Visit Pub&Bar',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  )),
-              const SizedBox(height: 15),
-              const Image(
-                  height: 200,
-                  image: NetworkImage(
-                      'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=600')),
-              const SizedBox(
-                height: 8,
-              ),
-              TextButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateColor.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.blue;
-                    }
-                    return Color.fromARGB(141, 25, 15, 3);
-                  })),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return const Scaffold(
-                        body: LandingPage(),
-                      );
-                    }));
-                  },
-                  child: const Text(
-                    'Visit Restaurant',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.white,
-                    ),
-                  ))
-            ],
-          ),
-        ));
+      backgroundColor: const Color.fromARGB(16, 67, 66, 66),
+      // appBar: AppBar(
+      //   title: const Text('Jo Pub&Resto'),
+      // ),
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: const Color.fromARGB(255, 11, 22, 28),
+          selectedItemColor: Colors.yellow,
+          unselectedItemColor: Colors.white,
+          currentIndex: selectedbutton,
+          onTap: _selectedbbuton,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.navigate_before), label: 'Go Back'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_3), label: 'Pub&Bar'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.notifications), label: 'Booking'),
+          ]),
+      body: _pages[selectedbutton],
+    );
   }
 }

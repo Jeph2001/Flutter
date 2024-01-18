@@ -1,3 +1,4 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:secondproject/RestoBar/login.dart';
 
@@ -33,9 +34,10 @@ class LandingPage extends StatelessWidget {
                     if (states.contains(MaterialState.pressed)) {
                       return Colors.blue.shade400;
                     }
-                    return Colors.blue.shade900;
+                    return Colors.blue.shade700;
                   })),
                   onPressed: () {
+                    // FirebaseAuth.instance.signOut();
                     Navigator.push(context,
                         MaterialPageRoute(builder: (BuildContext context) {
                       return const Scaffold(
